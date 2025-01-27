@@ -1,0 +1,195 @@
+﻿<Page x:Class="ProjectEstimationWinApp.Views.ESTPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectEstimationWinApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ESTPage">
+
+    <Grid Margin="0,0,5,0">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+
+                <TextBlock Text="Estimation Page" FontSize="24" FontWeight="Bold" Margin="10"/>
+
+
+                <GroupBox Name ="AnalysisAndDesignGroupBox" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Analysis &amp; Design" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Name="Sumvaleblock" Text="0" Grid.Column="1" Margin="500,0,0,0"  FontWeight="Bold"/>
+                        </Grid>
+                    </GroupBox.Header>
+
+                    <StackPanel>
+                        <Label Content="Analysis and requirement sign off" />
+                        <TextBox Name="Analysisandrequirementsignoff"  TextChanged="UpdateSum" />
+
+                        <Label Content="Functional Design" />
+                        <TextBox Name="FunctionalDesign"  TextChanged="UpdateSum" />
+
+                        <Label Content="Technical Design"/>
+                        <TextBox Name="TechnicalDesign" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="Coding" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Coding" Grid.Column="0" FontWeight="Bold"/>
+                            <TextBlock Name="Codingblock" Text="0" Grid.Column="1" Margin="570,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Label Content="Frontend changes"/>
+                        <TextBox Name="Frontendchanges" TextChanged="UpdateSum"/>
+
+                        <Label Content="Integration Changes"/>
+                        <TextBox Name="IntegrationChanges" TextChanged="UpdateSum"/>
+
+                        <Label Content="Backend Changes"/>
+                        <TextBox Name="BackendChanges" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="UnitTesting" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Unit Testing" Grid.Column="0" FontWeight="Bold"/>
+                            <TextBlock Name="UnitTestingblock" Text="0" Grid.Column="1" Margin="535,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Label Content="Unit Test Case Preparation"/>
+                        <TextBox Name="UnitTestCasePreparation" TextChanged="UpdateSum"/>
+
+                        <Label Content="Unit test logs and Defect Fix"/>
+                        <TextBox Name="UnittestlogsandDefectFix" TextChanged="UpdateSum"/>
+
+                        <Label Content="Code Review"/>
+                        <TextBox Name="CodeReview" TextChanged="UpdateSum"/>
+
+                        <Label Content="Unit Test Case Review"/>
+                        <TextBox Name="UnitTestCaseReview" TextChanged="UpdateSum"/>
+
+                        <Label Content="Unit test Result Review"/>
+                        <TextBox Name="UnittestResultReview" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="QAandUATTesting" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="QA &amp; UAT Testing" Grid.Column="0" FontWeight="Bold"/>
+                            <TextBlock Name="QATestingblock" Text="0" Grid.Column="1" Margin="495,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Label Content="QA Test Case Preparation"/>
+                        <TextBox Name="QATestCasePreparation" TextChanged="UpdateSum"/>
+
+                        <Label Content="QA Testing and Defect Fix"/>
+                        <TextBox Name="QATestingandDefectFix" TextChanged="UpdateSum"/>
+
+                        <Label Content="Integration Testing"/>
+                        <TextBox Name="IntegrationTesting" TextChanged="UpdateSum"/>
+
+                        <Label Content="UAT Testing and Defect Fix"/>
+                        <TextBox Name="UATTestingandDefectFix" TextChanged="UpdateSum"/>
+
+                        <Label Content="QA and Test Result Review"/>
+                        <TextBox Name="QAandTestResultReview" TextChanged="UpdateSum"/>
+
+                        <Label Content="QA &amp; UAT Support"/>
+                        <TextBox Name="QAandUATSupport" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="ReleaseManagement" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Release Management" Grid.Column="0" FontWeight="Bold"/>
+                            <TextBlock Name="ReleaseManagementblock" Text="0" Grid.Column="1" Margin="465,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Label Content="Release artifact, Version Labelling, PVCS/Bitbucket Check In, SDLC Document"/>
+                        <TextBox Name="Releasemanagement" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="Support" Margin="10">
+                    <GroupBox.Header>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Support" Grid.Column="0" FontWeight="Bold"/>
+                            <TextBlock Name="Supportblock" Text="0" Grid.Column="1" Margin="560,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox.Header>
+                    <StackPanel>
+                        <Label Content="Deployment Support"/>
+                        <TextBox Name="DeploymentSupport" TextChanged="UpdateSum"/>
+
+                        <Label Content="Warranty Support"/>
+                        <TextBox Name="WarrantySupport" TextChanged="UpdateSum"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Name="EstimationSummary"  Margin="10">
+                    <GroupBox.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Button Name="ToggleButton" Content="Estimation Summary" FontWeight="Bold" Background="LightGray" Padding="5" Click="ToogleSummaryVisibility" HorizontalAlignment="Stretch"/>
+                            <TextBlock Name="SummaryContainerblock" Text="0" Margin="500,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </GroupBox.Header>
+                    <StackPanel  Name="SummaryDetail" Visibility="Collapsed">
+                        <Label Content="Analysis &amp; Design"/>
+                        <TextBox Name="AnalysisandDesign1" IsReadOnly="True" TextChanged="UpdateSummary"/>
+
+                        <Label Content="Construction"/>
+                        <TextBox Name="Construction" IsReadOnly="True" TextChanged="UpdateSummary"/>
+
+                        <Label Content="QA"/>
+                        <TextBox Name="QA" IsReadOnly="True" TextChanged="UpdateSummary"/>
+
+                        <Label Content="UAT"/>
+                        <TextBox Name="UAT" IsReadOnly="True" TextChanged="UpdateSummary"/>
+
+                        <Label Content="Deployment Support"/>
+                        <TextBox Name="Deploymentsupport" IsReadOnly="True" TextChanged="UpdateSummary"/>
+
+                        <Label Content="Warranty Support"/>
+                        <TextBox Name="Warantysupport" IsReadOnly="True" TextChanged="UpdateSummary"/>
+                    </StackPanel>
+                </GroupBox>
+                <!--<Button Content="Continue" Click="NavigateTo" Margin="10"/>-->
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+
