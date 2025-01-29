@@ -95,6 +95,14 @@ namespace ProjectEstimationWinApp.Views
 
         //}
 
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+
+            NavigationService.Navigate(new Resource());
+
+
+        }
         private void TimeLine()
         {
             // Retrieve values from input fields and store them in local storage (or any other storage mechanism)

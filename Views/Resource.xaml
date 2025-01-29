@@ -1,0 +1,102 @@
+﻿<Page x:Class="ProjectEstimationWinApp.Views.Resource"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProjectEstimationWinApp.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="900"
+      Title="Resource">
+
+    <Grid>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Margin="20">
+                <!-- Header -->
+                <TextBlock Text="Estimation Page" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                <!-- Resources Required Section -->
+                <GroupBox Header="Resources Required" FontWeight="Bold" Margin="0,20,0,20">
+                    <Grid x:Name="resourceGrid" Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- First Column -->
+                        <TextBlock Text="Delivery Manager:" Margin="5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="deliveryManager" MaxLength="25" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Senior Manager:" Margin="5" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBox Name="seniorManager" MaxLength="25" Grid.Row="0" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Manager:" Margin="5" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="manager" MaxLength="25" Grid.Row="1" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Project Lead:" Margin="5" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBox Name="projectLead" MaxLength="25" Grid.Row="1" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Dev Team Lead:" Margin="5" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="devTeamLead" MaxLength="25" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Senior Developer:" Margin="5" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBox Name="seniorDeveloper" MaxLength="25" Grid.Row="2" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Developer:" Margin="5" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="developer" MaxLength="25" Grid.Row="3" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Testing Lead:" Margin="5" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBox Name="qaTeamLead" MaxLength="25" Grid.Row="3" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Senior Tester:" Margin="5" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="seniorTester" MaxLength="25" Grid.Row="4" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Tester:" Margin="5" Grid.Row="4" Grid.Column="2" VerticalAlignment="Center"/>
+                        <TextBox Name="tester" MaxLength="25" Grid.Row="4" Grid.Column="3" Margin="5"/>
+                        <TextBlock Text="Deployment Team:" Margin="5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"/>
+                        <TextBox Name="deploymentTeam" MaxLength="25" Grid.Row="5" Grid.Column="1" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+                <!-- Resource Type Dropdown and Add Button -->
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,20">
+                    <TextBlock Text="Select Resource Type:" VerticalAlignment="Center" Margin="5"/>
+                    <ComboBox x:Name="resourceType" Width="150" Margin="5">
+                        <ComboBoxItem Content="Delivery Manager"/>
+                        <ComboBoxItem Content="Senior Manager"/>
+                        <ComboBoxItem Content="Manager"/>
+                        <ComboBoxItem Content="Project Lead"/>
+                        <ComboBoxItem Content="Dev Team Lead"/>
+                        <ComboBoxItem Content="Senior Developer"/>
+                        <ComboBoxItem Content="Developer"/>
+                        <ComboBoxItem Content="Testing Lead"/>
+                        <ComboBoxItem Content="Senior Tester"/>
+                        <ComboBoxItem Content="Tester"/>
+                        <ComboBoxItem Content="Deployment Team"/>
+                    </ComboBox>
+                    <Button Content="Add New Resource" Margin="5" Click="AddResource_Click"/>
+                </StackPanel>
+                <!-- Project Timeline Section -->
+                <GroupBox Header="Project Timeline" FontWeight="Bold" Margin="0,20,0,20">
+                    <Grid Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Project Start Date:" Margin="5" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
+                        <DatePicker Name="projectStartDate" Grid.Row="0" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="Project End Date:" Margin="5" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"/>
+                        <DatePicker Name="projectEndDate" Grid.Row="0" Grid.Column="3" Margin="5"/>
+                    </Grid>
+                </GroupBox>
+
+                <!-- Submit Button -->
+                <Button Content="Submit" Width="100" Height="30" HorizontalAlignment="Center" Margin="20" Click="SaveData_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+
+
+    </Grid>
+</Page>
