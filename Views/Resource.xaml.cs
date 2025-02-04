@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 
 namespace ProjectEstimationWinApp.Views
 {
@@ -25,18 +13,18 @@ namespace ProjectEstimationWinApp.Views
 
         private void AddResource_Click(object sender, RoutedEventArgs e)
         {
+            // Get the selected resource type from the ComboBox
             ComboBoxItem selectedItem = (ComboBoxItem)resourceType.SelectedItem;
             string resourceTypeValue = selectedItem.Content.ToString();
             string formattedResourceType = System.Text.RegularExpressions.Regex.Replace(resourceTypeValue, "([A-Z])", " $1").Trim();
 
-            // Create new TextBlock
+            // Create new TextBlock and TextBox
             TextBlock resourceLabel = new TextBlock
             {
                 Text = $"{formattedResourceType}:",
                 VerticalAlignment = VerticalAlignment.Center
             };
 
-            // Create new TextBox
             TextBox resourceInput = new TextBox
             {
                 Name = resourceTypeValue.Replace(" ", "_") + "New", // Replace spaces with underscores
@@ -45,59 +33,41 @@ namespace ProjectEstimationWinApp.Views
                 Margin = new Thickness(10, 0, 0, 0)
             };
 
-            // Find the existing resource type and insert the new TextBlock and TextBox next to it
-            bool inserted = false;
-            for (int i = 0; i < resourceGrid.Children.Count; i++)
-            {
-                if (resourceGrid.Children[i] is TextBlock existingLabel && existingLabel.Text == $"{formattedResourceType}:")
-                {
-                    int row = Grid.GetRow(existingLabel);
-                    int column = Grid.GetColumn(existingLabel);
+            // Find the last row in the additional resources grid
+            int nextRow = additionalResourcesGrid.RowDefinitions.Count;
+            additionalResourcesGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
 
-                    // Insert new TextBlock and TextBox in the next available column
-                    if (column == 0)
-                    {
-                        Grid.SetRow(resourceLabel, row);
-                        Grid.SetColumn(resourceLabel, 2);
-                        Grid.SetRow(resourceInput, row);
-                        Grid.SetColumn(resourceInput, 3);
-                    }
-                    else
-                    {
-                        Grid.SetRow(resourceLabel, row + 1);
-                        Grid.SetColumn(resourceLabel, 0);
-                        Grid.SetRow(resourceInput, row + 1);
-                        Grid.SetColumn(resourceInput, 1);
-                    }
+            // Add the TextBlock and TextBox to the additional resources grid
+            Grid.SetRow(resourceLabel, nextRow);
+            Grid.SetColumn(resourceLabel, 0);
+            Grid.SetRow(resourceInput, nextRow);
+            Grid.SetColumn(resourceInput, 1);
 
-                    resourceGrid.Children.Add(resourceLabel);
-                    resourceGrid.Children.Add(resourceInput);
-                    inserted = true;
-                    break;
-                }
-            }
-
-            // If the resource type was not found, add it to the end
-            if (!inserted)
-            {
-                int nextRow = resourceGrid.RowDefinitions.Count;
-                resourceGrid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-
-                Grid.SetRow(resourceLabel, nextRow);
-                Grid.SetColumn(resourceLabel, 0);
-                Grid.SetRow(resourceInput, nextRow);
-                Grid.SetColumn(resourceInput, 1);
-
-                resourceGrid.Children.Add(resourceLabel);
-                resourceGrid.Children.Add(resourceInput);
-            }
+            additionalResourcesGrid.Children.Add(resourceLabel);
+            additionalResourcesGrid.Children.Add(resourceInput);
         }
 
         private void SaveData_Click(object sender, RoutedEventArgs e)
         {
             var resources = new Dictionary<string, ResourceData>();
 
+            // Collect data from the main resource grid
             foreach (var child in resourceGrid.Children)
+            {
+                if (child is TextBox textBox)
+                {
+                    string resourceType = textBox.Name;
+                    if (!resources.ContainsKey(resourceType))
+                    {
+                        resources[resourceType] = new ResourceData { Count = 0, Names = new List<string>() };
+                    }
+                    resources[resourceType].Names.Add(textBox.Text);
+                    resources[resourceType].Count++;
+                }
+            }
+
+            // Collect data from the additional resources grid
+            foreach (var child in additionalResourcesGrid.Children)
             {
                 if (child is TextBox textBox)
                 {
